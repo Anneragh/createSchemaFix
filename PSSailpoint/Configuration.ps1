@@ -265,7 +265,8 @@ function Get-AccessToken {
                     $Data = ConvertFrom-Json $Response.Content
                     $Token = $Data.access_token
                     $TokenExpiration = (Get-Date).AddSeconds($Data.expires_in)
-                    Set-DefaultConfiguration -Token $Token -TokenExpiration $TokenExpiration -Proxy $Script:Configuration["Proxy"]
+                    $Proxy = $Script:Configuration["Proxy"]
+                    Set-DefaultConfiguration -Token $Token -TokenExpiration $TokenExpiration -Proxy $Proxy
                     return $Token
                 } 
 
